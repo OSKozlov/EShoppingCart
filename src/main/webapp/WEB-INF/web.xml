@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         version="2.5">
+
+    <servlet>
+        <servlet-name>ShowShoppingCartServlet</servlet-name>
+        <servlet-class>edu.webapp.servlets.ShowShoppingCartServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddToShoppingCartServlet</servlet-name>
+        <servlet-class>edu.webapp.servlets.AddToShoppingCartServlet</servlet-class>
+	<init-param>
+		<param-name>maxItemCount</param-name>
+		<param-value>4</param-value>
+	</init-param>
+    </servlet>
+    <servlet>
+        <servlet-name>RemoveFromShoppingCartServlet</servlet-name>
+        <servlet-class>edu.webapp.servlets.RemoveFromShoppingCartServlet</servlet-class>
+    </servlet>
+    
+    <filter>
+    <filter-name>InitShoppingCartFilter</filter-name>
+    <filter-class>edu.webapp.filters.InitShoppingCartFilter</filter-class>
+    </filter>
+    
+    <filter-mapping>
+    	<filter-name>InitShoppingCartFilter</filter-name>
+    	<url-pattern>/*</url-pattern>
+    </filter-mapping>
+    
+    <listener>
+    	<listener-class>edu.webapp.listeners.InitApplicationListener</listener-class>
+    </listener>
+
+    <!--filter-mapping>
+    	<filter-name>InitShoppingCartFilter</filter-name>
+    	<servlet-name>AddToShoppingCartServlet</servlet-name>
+    </filter-mapping-->
+
+    <servlet-mapping>
+        <servlet-name>ShowShoppingCartServlet</servlet-name>
+        <url-pattern>/showShoppingCart</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddToShoppingCartServlet</servlet-name>
+        <url-pattern>/addToShoppingCart</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RemoveFromShoppingCartServlet</servlet-name>
+        <url-pattern>/removeFromShoppingCart</url-pattern>
+    </servlet-mapping>
+
+</web-app>
